@@ -1,104 +1,103 @@
-#Antes de iniciar o curso, a HarvardX aplica um pré-teste abordando conhecimentos básicos sobre o software R.
-#Afinal, é um curso de Machine Learning em R. São 9 questões no total e cada questão é de natureza diferente.
-#Let's go!
-#Instalando e carregando o pacote solicitado.
+#'  Antes de iniciar o curso, a HarvardX aplica um pré-teste abordando conhecimentos básicos sobre o software R.
+#'  Afinal, é um curso de Machine Learning em R. São 9 questões no total e cada questão é de natureza diferente.
+#'  Let's go!
+#'  Instalando e carregando o pacote solicitado.
 
 install.packages("dslabs")
 library(dslabs)
 
-#Os dados que vão ser utilizados para análise é denominado por "heights" e que se encontra dentro do pacote já instalado (dslabs). 
-#É fácil observar (no canto superior direito) que estes dados possui um total de 1050 linhas e 2 variáveis e, ao carregar os dados, 
-#é possível verificar que as variáveis são denominadas por "sex" e "height", em que a variável "sex" possui o grupo "Male" e "Female".
+#'  Os dados que vão ser utilizados para análise é denominado por "heights" e que se encontra dentro do pacote já instalado (dslabs). 
+#'  É fácil observar (no canto superior direito) que estes dados possui um total de 1050 linhas e 2 variáveis e, ao carregar os dados, 
+#'  é possível verificar que as variáveis são denominadas por "sex" e "height", em que a variável "sex" possui o grupo "Male" e "Female".
 
 data("heights")
 head(heights) #para visualizar apenas algumas linhas dos dados
 
-#Questões
+#' Questões
 
-#A primeira questão abordou tópicos relacionados a qual categoria se refere cada variável ou grupo.
-#Heights é um dataset e, por consequência, é um data.frame, já a variável "sex" é uma coluna que possui dois fatores (Male e Female)
-#e por isso é um vetor de fator ou, em inglês, factor vector. Diferente da coluna "sex", a coluna "height" são números que caracterizam 
-#a altura dos indivíduos e por decorrência deste fato este é um vetor de números. Quanto as categorias Male e Female, as duas são uma 
-#string de caracteres.
+#' A primeira questão abordou tópicos relacionados a qual categoria se refere cada variável ou grupo.
+#' Heights é um dataset e, por consequência, é um data.frame, já a variável "sex" é uma coluna que possui dois fatores (Male e Female)
+#' e por isso é um vetor de fator ou, em inglês, factor vector. Diferente da coluna "sex", a coluna "height" são números que caracterizam 
+#' a altura dos indivíduos e por decorrência deste fato este é um vetor de números. Quanto as categorias Male e Female, as duas são uma 
+#' string de caracteres.
 
-#A segunda questão foi sobre a dimensão dos objetos. Por exemplo, qual a dimensão do dataset?
+#' A segunda questão foi sobre a dimensão dos objetos. Por exemplo, qual a dimensão do dataset?
 
 dim(heights)
 
-#A terceira questão questinou qual seria a altura correspondente da linha 777.
+#' A terceira questão questinou qual seria a altura correspondente da linha 777.
 
 heights$height[777]
 
-#Quarta questão abordou de quantas formas poderímos encontrar o sexo do indivíduo da linha 777.
+#' Quarta questão abordou de quantas formas poderímos encontrar o sexo do indivíduo da linha 777.
 
 heights$sex[777]
 #ou
 heights[777,1]
 
-#Observação: A terceira e a quarta questão foram abordadas para saber se você sabe trabalhar com linhas e colunas dentro de um dataset.
-#Em matrizes é da mesma forma. Antes da vírgula são as linhas e após são as colunas.
+#' Observação: A terceira e a quarta questão foram abordadas para saber se você sabe trabalhar com linhas e colunas dentro de um dataset.
+#' Em matrizes é da mesma forma. Antes da vírgula são as linhas e após são as colunas.
 
-#A quinta questão é sobre a "procura" máximo e mínimo dentro do dataset. Por exemplo, qual é a altura máxima do dataset?
+#' A quinta questão é sobre a "procura" máximo e mínimo dentro do dataset. Por exemplo, qual é a altura máxima do dataset?
 
 which.max(heights$height)
 
-#O comando "which.max" retorna a linha em que se encontra o valor máximo da 
-#váriavel height, e não é isso que a gente quer. Então,
+#' O comando "which.max" retorna a linha em que se encontra o valor máximo da 
+#' váriavel height, e não é isso que a gente quer. Então,
 
 
 max(heights$height)
 
-#A altura máxima da variável height é 82.67. Mas, poderíamos também utilizar
-#o comando summary para atingir o objetivo que é encontrar a altura máxima.
-#E qual é a linha em que se encontra o altura miníma?
+#' A altura máxima da variável height é 82.67. Mas, poderíamos também utilizar
+#' o comando summary para atingir o objetivo que é encontrar a altura máxima.
+#' E qual é a linha em que se encontra o altura miníma?
 
 which.min(heights$height)
 
-#Ou seja, a linha em que se encontra o valor minímo para a altura é a 1032.
-#O comando summary que comentei acima nos fornece o resumo estatístico do dataset e na sexta questão a pergunta é: Qual é a média 
-#da variável height? E qual é a sua mediana?
+#' Ou seja, a linha em que se encontra o valor minímo para a altura é a 1032.
+#' O comando summary que comentei acima nos fornece o resumo estatístico do dataset e na sexta questão a pergunta é: Qual é a média 
+#' da variável height? E qual é a sua mediana?
 
 summary(heights$height)
 
-#Logo, de acordo com o resumo, a média das alturas é 68.32 e a mediana é 68.50. 
-#Qual a conclusão que podemos colher dessas medidas resumo? Podemos ressaltar que a distribuição dessa variável é em formato de sino,
-#ou seja, sua mediana é, basicamente, igual a média. Talvez essa variável possa ser distribuída normalmente, mas deve-se fazer testes 
-#para comprovação.
-
-
+#' Logo, de acordo com o resumo, a média das alturas é 68.32 e a mediana é 68.50. 
+#' Qual a conclusão que podemos colher dessas medidas resumo? Podemos ressaltar que a distribuição dessa variável é em formato de sino,
+#' ou seja, sua mediana é, basicamente, igual a média. Talvez essa variável possa ser distribuída normalmente, mas deve-se fazer testes 
+#' para comprovação.
 
 hist(heights$height, main = "Histograma das Alturas", xlab = "Alturas",
      ylab = "Frequência")
 
+#' A sétima questão me deixou na dúvida e, por isso, errei. A pergunta era qual a proporção de indivíduos que são do sexo masculino.
+#' Inicialmente, fiz com os operadores matemáticos.
 
-#A sétima questão me deixou na dúvida e, por isso, errei. A pergunta era qual a proporção de indivíduos que são do sexo masculino. Inicialmente, fiz com os operadores matemáticos.
-
-#Solicitei através do comando summary o resumo estatístico da variável sex afim de coletar quantos indivíduos estão alocados em cada grupo.
+#' Solicitei através do comando summary o resumo estatístico da variável sex afim de coletar quantos indivíduos estão alocados
+#' em cada grupo.
 
 summary(heights$sex)
 
-#São 812 indivíduos do sexo masculino em um total de 1050.
+#' São 812 indivíduos do sexo masculino em um total de 1050.
 
 (812/1050)*100
 
-#A resposta inserida foi 77.33, mas estava incorreta. Você sabe o porque? Foi pedido a PROPORÇÃO e não a PORCENTAGEM. 
-#Logo, a resposta correta é 0.7733. É importante ressaltar aqui que o curso é 100% em inglês, e isso pode afetar algumas
-#interpretações da minha parte.
+#' A resposta inserida foi 77.33, mas estava incorreta. Você sabe o porque? Foi pedido a PROPORÇÃO e não a PORCENTAGEM. 
+#' Logo, a resposta correta é 0.7733. É importante ressaltar aqui que o curso é 100% em inglês, e isso pode afetar algumas
+#' interpretações da minha parte.
 
-#A qustão 8 questão aborda condições, e a pergunta foi: Quantos indivíduos são mais altos do que 78 inches?
-#Inicialmente eu "buguei". Esqueci algumas condições do R, dado que eu estava estudando SQL e Python. Então, a minha primeira 
-#forma de pensar foi verificar através de TRUE or FALSE.
+#' A questão 8 questão aborda condições, e a pergunta foi: Quantos indivíduos são mais altos do que 78 inches?
+#' Inicialmente eu "buguei". Esqueci algumas condições do R, dado que eu estava estudando SQL e Python. Então, a minha primeira 
+#' forma de pensar foi verificar através de TRUE or FALSE.
 
 heights$height>78
 
-#Mas, eu não conseguia contar quantos TRUE haviam. E por isso comecei a pensar em qual forma seria mais fácil fazer contagem. 
-#Foi aí que pensei no table e consegui chegar a resposta correta.
+#' Mas, eu não conseguia contar quantos TRUE haviam. E por isso comecei a pensar em qual forma seria mais fácil fazer contagem. 
+#' Foi aí que pensei no table e consegui chegar a resposta correta.
 
 table(heights$height>78) #quantos são maiores que 78
 
-#A questão 9 é bem parecida com a 8, mas com um pequeno diferencial. Quantos indivíduos do sexo feminino são mais altos do que 78 inches?
-#Tentei de várias formas. Mas, a solução foi obtida através do comando table novamente.
+#' A questão 9 é bem parecida com a 8, mas com um pequeno diferencial. Quantos indivíduos do sexo feminino são mais altos do que 78 inches?
+#' Tentei de várias formas. Mas, a solução foi obtida através do comando table novamente.
 
 table(heights$height>78 & heights$sex == "Female")
 
-#Bem, foram essas questões. Errei duas por interpretar de uma forma incorreta o exercício, mas no geral foi bem proveitoso.
+#' Bem, foram essas questões. Errei duas por interpretar de uma forma incorreta o exercício, mas no geral foi bem proveitoso.
